@@ -1,4 +1,5 @@
-**/*.pyc
-src/iris/build/**
-src/iris/dist/**
-src/iris/Iris.egg-info/**
+**/__pycache__/**
+build/**
+dist/**
+*.egg-info/**
+.idea/**
