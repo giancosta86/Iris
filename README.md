@@ -12,7 +12,7 @@ Iris is a general-purpose, object-oriented and open source library for Python 3.
 
 All the modules reside within the **info.gianlucacosta.iris** package and subpackages.
 
-The most interesting ones are perhaps:
+In particular:
 
 * **ioc**, featuring a simple IoC container, that supports transient and singleton objects out of the box and can be extended via OOP by introducing new registration kinds
 
