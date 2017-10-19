@@ -8,7 +8,7 @@ with open("README.md", "r") as readmeFile:
 
 setup(
     name="info.gianlucacosta.iris",
-    version="3.0",
+    version="3.1",
     packages=find_packages(),
 
     author="Gianluca Costa",
