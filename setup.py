@@ -13,7 +13,7 @@ setup(
 
     author="Gianluca Costa",
     author_email="gianluca@gianlucacosta.info",
-    description="A general-purpose library for Python",
+    description="General-purpose library for Python",
     long_description=longDescription,
     license="LGPLv3",
     keywords=["library", "IoC container", "dependency injector", "versioning", "Maven", "rendering", "utilities"],
