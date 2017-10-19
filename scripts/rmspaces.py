@@ -3,7 +3,7 @@
 """
 Utility script employing TrailingSpaceRemover
 
-:copyright: Copyright (C) 2013-2015 Gianluca Costa.
+:copyright: Copyright (C) 2013-2017 Gianluca Costa.
 :license: LGPLv3, see LICENSE for details.
 """
 
@@ -11,7 +11,7 @@ Utility script employing TrailingSpaceRemover
 import sys
 import re
 
-from iris.io.filetree import TrailingSpaceRemover, DefaultOnProcessingFunctions
+from info.gianlucacosta.iris.io.filetree import TrailingSpaceRemover, DefaultOnProcessingFunctions
 
 
 class Program:

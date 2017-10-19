@@ -1,12 +1,12 @@
 """
-:copyright: Copyright (C) 2013-2015 Gianluca Costa.
+:copyright: Copyright (C) 2013-2017 Gianluca Costa.
 :license: LGPLv3, see LICENSE for details.
 """
 
 import os
 import shutil
 
-from iris.io.filetree import HeaderRemover, TrailingSpaceRemover
+from info.gianlucacosta.iris.io.filetree import HeaderRemover, TrailingSpaceRemover
 from tests.io import AbstractIoTestCase
 
 

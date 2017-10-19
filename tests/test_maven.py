@@ -1,12 +1,12 @@
 """
-:copyright: Copyright (C) 2013-2015 Gianluca Costa.
+:copyright: Copyright (C) 2013-2017 Gianluca Costa.
 :license: LGPLv3, see LICENSE for details.
 """
 
 import unittest
 import os
 
-from iris.maven import MavenArtifact, MavenRepository
+from info.gianlucacosta.iris.maven import MavenArtifact, MavenRepository
 
 
 class MavenArtifactTests(unittest.TestCase):

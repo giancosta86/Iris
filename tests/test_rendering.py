@@ -1,11 +1,11 @@
 """
-:copyright: Copyright (C) 2013-2015 Gianluca Costa.
+:copyright: Copyright (C) 2013-2017 Gianluca Costa.
 :license: LGPLv3, see LICENSE for details.
 """
 
 import unittest
 
-from iris.rendering import Model, View, TemplateView
+from info.gianlucacosta.iris.rendering import Model, View, TemplateView
 
 
 class TestModel(Model):

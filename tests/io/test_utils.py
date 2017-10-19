@@ -1,12 +1,12 @@
 """
-:copyright: Copyright (C) 2013-2015 Gianluca Costa.
+:copyright: Copyright (C) 2013-2017 Gianluca Costa.
 :license: LGPLv3, see LICENSE for details.
 """
 
 import os
 import shutil
 
-from iris.io.utils import PathOperations
+from info.gianlucacosta.iris.io.utils import PathOperations
 from tests.io import AbstractIoTestCase
 
 
@@ -59,17 +59,17 @@ class PathOperationsTests(AbstractIoTestCase):
     def testLinearWalkWithoutFilter(self):
         treeDir = os.path.join(self._ioTestPath, "tree")
 
-        linearSequence = [
+        linearSequence = {
             os.path.join(item.dirPath, item.baseName)
             for item in PathOperations.linearWalk(treeDir)
-        ]
+        }
 
-        self.assertEquals([
+        self.assertEquals({
             os.path.join(treeDir, "sigma"),
             os.path.join(treeDir, "alpha", "T1"),
             os.path.join(treeDir, "alpha", "gamma", "delta", "T2"),
             os.path.join(treeDir, "beta", "T3")
-        ], linearSequence)
+        }, linearSequence)
 
 
     def _filterOutAlphaDirsOnly(self, dirPath, dirNames, fileNames):

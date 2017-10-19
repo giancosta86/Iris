@@ -1,12 +1,12 @@
 """
-:copyright: Copyright (C) 2013-2015 Gianluca Costa.
+:copyright: Copyright (C) 2013-2017 Gianluca Costa.
 :license: LGPLv3, see LICENSE for details.
 """
 
 import os
 
-from iris.vars import VariablesService, Flag
-from iris.io.utils import PathOperations
+from info.gianlucacosta.iris.vars import VariablesService, Flag
+from info.gianlucacosta.iris.io.utils import PathOperations
 from tests.io import AbstractIoTestCase
 
 

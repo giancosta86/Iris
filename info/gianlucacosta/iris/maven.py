@@ -1,12 +1,12 @@
 """
 Maven utilities
 
-:copyright: Copyright (C) 2013-2015 Gianluca Costa.
+:copyright: Copyright (C) 2013-2017 Gianluca Costa.
 :license: LGPLv3, see LICENSE for details.
 """
 import os
 
-from iris.versioning import Version, VersionDirectory
+from .versioning import Version, VersionDirectory
 
 
 class MavenArtifact:
@@ -75,7 +75,7 @@ class MavenArtifact:
         In particular, it will be:
 
             <groupId with "." replaced by <separator>>[<separator><artifactId><separator>[<version><separator><basename obtained via getFileName()>]]
-            
+
         By default, <separator>=os.sep
         """
 
