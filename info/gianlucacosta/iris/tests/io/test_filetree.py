@@ -7,7 +7,8 @@ import os
 import shutil
 
 from info.gianlucacosta.iris.io.filetree import HeaderRemover, TrailingSpaceRemover
-from tests.io import AbstractIoTestCase
+
+from . import AbstractIoTestCase
 
 
 class FileTreeTestCase(AbstractIoTestCase):

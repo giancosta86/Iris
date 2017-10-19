@@ -28,7 +28,7 @@ setup(
         "Topic :: Utilities"
     ],
 
-    test_suite="tests",
+    test_suite="info.gianlucacosta.iris.tests",
 
     scripts=glob.glob("scripts/*.py")
 )

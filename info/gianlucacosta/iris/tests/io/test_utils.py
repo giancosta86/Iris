@@ -7,7 +7,8 @@ import os
 import shutil
 
 from info.gianlucacosta.iris.io.utils import PathOperations
-from tests.io import AbstractIoTestCase
+
+from . import AbstractIoTestCase
 
 
 class PathOperationsTests(AbstractIoTestCase):

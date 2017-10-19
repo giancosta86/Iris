@@ -7,7 +7,8 @@ import os
 
 from info.gianlucacosta.iris.vars import VariablesService, Flag
 from info.gianlucacosta.iris.io.utils import PathOperations
-from tests.io import AbstractIoTestCase
+
+from .io import AbstractIoTestCase
 
 
 class VariablesTestCase(AbstractIoTestCase):
