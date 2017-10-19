@@ -1,12 +1,14 @@
-from setuptools import setup, find_packages
 import glob
 
-with open("README.rst", "r") as readmeFile:
+from setuptools import setup, find_packages
+
+
+with open("README.md", "r") as readmeFile:
     longDescription = readmeFile.read()
 
 setup(
-    name="Iris",
-    version="2.0",
+    name="info.gianlucacosta.iris",
+    version="3.0",
     packages=find_packages(),
 
     author="Gianluca Costa",
