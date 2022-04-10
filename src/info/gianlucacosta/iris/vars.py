@@ -25,7 +25,7 @@ class VariablesService:
         """
         Creates a flag having path <variables dir path><os.sep><flagName>
         """
-        assert (len(flagName) > 0)
+        assert len(flagName) > 0
 
         return Flag(os.path.join(self._variablesDirPath, flagName))
 
@@ -44,10 +44,8 @@ class Flag:
     def __init__(self, path):
         self._path = path
 
-
     def getPath(self):
         return self._path
-
 
     def isActive(self):
         """
@@ -55,20 +53,17 @@ class Flag:
         """
         return os.path.exists(self._path)
 
-
     def activate(self):
         """
         Sets the flag's value to true
         """
         PathOperations.touch(self._path)
 
-
     def deactivate(self):
         """
         Sets the flag's value to false
         """
         PathOperations.safeRemove(self._path)
-
 
     def flip(self):
         """

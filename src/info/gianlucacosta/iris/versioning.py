@@ -41,7 +41,12 @@ class Version:
         """
         if isinstance(source, Version):
             self._rawString = source._rawString
-            self._major, self._minor, self._build, self._revision = source._major, source._minor, source._build, source._revision
+            self._major, self._minor, self._build, self._revision = (
+                source._major,
+                source._minor,
+                source._build,
+                source._revision,
+            )
         else:
             self._rawString = str(source)
 
@@ -54,15 +59,18 @@ class Version:
             components.extend([None] * (4 - componentsLen))
 
             try:
-                components = [int(component) if component is not None else None
-                              for component in components]
+                components = [
+                    int(component) if component is not None else None
+                    for component in components
+                ]
 
                 self._major, self._minor, self._build, self._revision = components
             except ValueError:
-                raise InvalidVersionException("All the declared version components must be numeric")
+                raise InvalidVersionException(
+                    "All the declared version components must be numeric"
+                )
 
         self._friendlyString = None
-
 
     def getMajor(self):
         return self._major
@@ -88,13 +96,11 @@ class Version:
     def getIntRevision(self):
         return self._revision if self._revision is not None else 0
 
-
     def __lt__(self, other):
         if not isinstance(other, Version):
             other = Version(other)
 
         return str(self) < str(other)
-
 
     def __eq__(self, other):
         if not isinstance(other, Version):
@@ -102,17 +108,14 @@ class Version:
 
         return str(self) == str(other)
 
-
     def __hash__(self):
         return hash(self._major)
-
 
     def getRawString(self):
         """
         Returns the version string passed to the constructor
         """
         return self._rawString
-
 
     def getFriendlyString(self):
         """
@@ -127,7 +130,7 @@ class Version:
             self.getIntMajor(),
             self.getIntMinor(),
             self.getIntBuild(),
-            self.getIntRevision()
+            self.getIntRevision(),
         ]
 
         for i in range(len(resultComponents) - 1, -1, -1):
@@ -142,10 +145,8 @@ class Version:
 
         return result
 
-
     def __repr__(self):
         return self.getRawString()
-
 
     def __str__(self):
         return self.getFriendlyString()
@@ -162,7 +163,6 @@ class VersionDirectory:
         The path of the directory
         """
         self._path = path
-
 
     def getVersions(self):
         """
@@ -183,7 +183,6 @@ class VersionDirectory:
                 continue
 
         return result
-
 
     def getLatestVersion(self):
         """

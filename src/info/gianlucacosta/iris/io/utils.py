@@ -27,7 +27,6 @@ class PathOperations:
         except OSError:
             return False
 
-
     @staticmethod
     def safeRemove(path):
         """
@@ -42,7 +41,6 @@ class PathOperations:
         except OSError:
             return False
 
-
     @staticmethod
     def touch(path):
         """
@@ -56,7 +54,6 @@ class PathOperations:
         with open(path, "wb"):
             pass
 
-
     @staticmethod
     def safeRmTree(rootPath):
         """
@@ -65,7 +62,6 @@ class PathOperations:
         shutil.rmtree(rootPath, True)
 
         return not os.path.exists(rootPath)
-
 
     @staticmethod
     def linearWalk(rootPath, currentDirFilter=None):
@@ -89,15 +85,13 @@ class PathOperations:
         for dirTuple in os.walk(rootPath):
             (dirPath, dirNames, fileNames) = dirTuple
 
-            if currentDirFilter is not None and not currentDirFilter(dirPath, dirNames, fileNames):
+            if currentDirFilter is not None and not currentDirFilter(
+                dirPath, dirNames, fileNames
+            ):
                 continue
 
             for fileName in fileNames:
-                yield LinearWalkItem(
-                    dirPath,
-                    fileName
-                )
-
+                yield LinearWalkItem(dirPath, fileName)
 
 
 class LinearWalkItem:

@@ -15,6 +15,7 @@ class Model:
     It is, of course, independent of the specific
     templating technology.
     """
+
     _getterPattern = re.compile("^(?:get|is)([A-Z]+.*)$")
 
     def __init__(self, cacheVars=True):
@@ -29,13 +30,11 @@ class Model:
         self._explicitVars = {}
         self._cacheVars = cacheVars
 
-
     def setVar(self, name, value):
         """
         Sets a variable in the model
         """
         self._explicitVars[name] = value
-
 
     def findVars(self):
         """
@@ -86,7 +85,7 @@ class View:
     """
 
     def __init__(self, model):
-        assert (model is not None)
+        assert model is not None
 
         self._model = model
 
@@ -100,5 +99,5 @@ class TemplateView(View):
     def __init__(self, model, templatePath):
         super(TemplateView, self).__init__(model)
 
-        assert (templatePath is not None)
+        assert templatePath is not None
         self._templatePath = templatePath

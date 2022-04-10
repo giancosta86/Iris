@@ -19,7 +19,6 @@ class ContainerRegistration:
         """
         raise NotImplementedError
 
-
     def dispose(self):
         """
         Called when dispose() is called on the related container
@@ -44,10 +43,8 @@ class TransientRegistration(ContainerRegistration):
 
         self._factoryMethod = factoryMethod
 
-
     def resolve(self, container, key):
         return self._factoryMethod(container, key)
-
 
     def dispose(self):
         pass
@@ -74,13 +71,11 @@ class SingletonRegistration(ContainerRegistration):
         self._disposeMethod = disposeMethod
         self._instance = None
 
-
     def resolve(self, container, key):
         if self._instance is None:
             self._instance = self._factoryMethod(container, key)
 
         return self._instance
-
 
     def dispose(self):
         instance = self._instance
@@ -98,7 +93,6 @@ class Container:
     def __init__(self):
         self._registrations = {}
 
-
     def addRegistration(self, key, registration):
         """
         Binds an IoC registration to a given key. It should be used if you
@@ -112,7 +106,6 @@ class Container:
         self._registrations[key] = registration
         return self
 
-
     def registerTransient(self, key, factoryMethod):
         """
         Binds a factory method to a key: whenever the requested key is resolved,
@@ -123,7 +116,6 @@ class Container:
         """
         return self.addRegistration(key, TransientRegistration(factoryMethod))
 
-
     def registerSingleton(self, key, factoryMethod, disposeMethod=None):
         """
         Binds a singleton instance to a key: whenever the requested key is resolved,
@@ -133,8 +125,9 @@ class Container:
         When the client calls dispose() on the container, disposeMethod(instance) is called
         if the instance was previously created.
         """
-        return self.addRegistration(key, SingletonRegistration(factoryMethod, disposeMethod))
-
+        return self.addRegistration(
+            key, SingletonRegistration(factoryMethod, disposeMethod)
+        )
 
     def resolve(self, key):
         """
@@ -146,7 +139,6 @@ class Container:
             raise KeyError("Unknown key: '{0}'".format(key))
 
         return registration.resolve(self, key)
-
 
     def dispose(self):
         """
