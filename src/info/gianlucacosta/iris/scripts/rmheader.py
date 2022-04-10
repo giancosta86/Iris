@@ -12,14 +12,16 @@ import os
 import sys
 import re
 
-from info.gianlucacosta.iris.io.filetree import HeaderRemover, DefaultOnProcessingFunctions
+from ..io.filetree import (
+    HeaderRemover,
+    DefaultOnProcessingFunctions,
+)
 
 
 class Program:
     def _printUsage(self):
         print("Arguments: <root dir> <file path regex> <trailing regex>")
         sys.exit(1)
-
 
     def run(self, args):
         if len(args) < 3:
@@ -38,5 +40,9 @@ class Program:
         headerRemover.applyTo(rootDir)
 
 
-if __name__ == "__main__":
+def main():
     Program().run(sys.argv[1:])
+
+
+if __name__ == "__main__":
+    main()

@@ -9,21 +9,20 @@ Utility script employing HeaderRemover to remove license headers created by Mave
 
 import sys
 
-from rmheader import Program
+from .rmheader import Program
 
 
-if __name__ == "__main__":
+def main():
     if len(sys.argv) < 2:
         print("Arguments: <root dir>")
         sys.exit(1)
-
 
     # For Java
     Program().run(
         [
             sys.argv[1],
             r".*\.(java|cs|js|c|cpp)$",
-            r"(?s)^.*==========================%##\s+\*/[\r\n]+"
+            r"(?s)^.*==========================%##\s+\*/[\r\n]+",
         ]
     )
 
@@ -32,7 +31,10 @@ if __name__ == "__main__":
         [
             sys.argv[1],
             r".*\.(htm|html|xml)$",
-            r"(?s)^.*==========================%##\s+\-->[\r\n]+"
+            r"(?s)^.*==========================%##\s+\-->[\r\n]+",
         ]
     )
 
+
+if __name__ == "__main__":
+    main()

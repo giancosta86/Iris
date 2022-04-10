@@ -22,6 +22,12 @@ requires = ['poetry-core>=1.0.0']
 build-backend = 'poetry.core.masonry.api'
 
 
+[tool.poetry.scripts]
+rmheader = 'info.gianlucacosta.iris.scripts.rmheader:main'
+rmlicense = 'info.gianlucacosta.iris.scripts.rmlicense:main'
+rmspaces = 'info.gianlucacosta.iris.scripts.rmspaces:main'
+
+
 [tool.poe.tasks]
 check = ['check-format', 'test']
 test='pytest --cov=info.gianlucacosta.iris --cov-report html --cov-report term tests'

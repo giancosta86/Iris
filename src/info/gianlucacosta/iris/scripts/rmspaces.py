@@ -11,7 +11,7 @@ Utility script employing TrailingSpaceRemover
 import sys
 import re
 
-from info.gianlucacosta.iris.io.filetree import TrailingSpaceRemover, DefaultOnProcessingFunctions
+from ..io.filetree import TrailingSpaceRemover, DefaultOnProcessingFunctions
 
 
 class Program:
@@ -20,11 +20,13 @@ class Program:
         filePathRegex = args[1]
 
         trailingSpaceRemover = TrailingSpaceRemover(re.compile(filePathRegex))
-        trailingSpaceRemover.onProcessing = DefaultOnProcessingFunctions.printProcessedFile
+        trailingSpaceRemover.onProcessing = (
+            DefaultOnProcessingFunctions.printProcessedFile
+        )
         trailingSpaceRemover.applyTo(rootDir)
 
 
-if __name__ == "__main__":
+def main():
     if len(sys.argv) < 2:
         print("Arguments: <root dir> [<file path regex>]")
         sys.exit(1)
@@ -33,3 +35,7 @@ if __name__ == "__main__":
         sys.argv.append(r".*\.(java|htm|html|xml|cs|py|js|c|cpp)$")
 
     Program().run(sys.argv[1:])
+
+
+if __name__ == "__main__":
+    main()
