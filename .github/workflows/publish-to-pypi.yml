@@ -24,4 +24,6 @@ jobs:
 
       - run: poetry build
 
-      - run: poetry publish -u giancosta86 -p '${{ secrets.PYPI_TOKEN }}'
+      - run: poetry publish
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
