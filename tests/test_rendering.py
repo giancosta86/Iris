@@ -8,7 +8,7 @@ import unittest
 from info.gianlucacosta.iris.rendering import Model, View, TemplateView
 
 
-class TestModel(Model):
+class MyTestModel(Model):
     def getAlpha(self):
         return 90
 
@@ -21,14 +21,13 @@ class TestModel(Model):
 
 class ModelTests(unittest.TestCase):
     def setUp(self):
-        self._model = TestModel(False)
+        self._model = MyTestModel(False)
 
         self._expectedVars = {
             "alpha": self._model.getAlpha(),
             "beta": self._model.getBeta(),
-            "testing": self._model.isTesting()
+            "testing": self._model.isTesting(),
         }
-
 
     def _getModelVarsWithoutVarsKey(self):
         result = self._model.findVars()
@@ -36,51 +35,45 @@ class ModelTests(unittest.TestCase):
 
         return result
 
-
     def testFindVars_ShouldContainTheVarsKey(self):
-        assert ("vars" in self._model.findVars().keys())
-
+        assert "vars" in self._model.findVars().keys()
 
     def testFindVars_ShouldReturnOnlyGetterValuesByDefault(self):
-        self.assertEquals(self._expectedVars, self._getModelVarsWithoutVarsKey())
-
+        self.assertEqual(self._expectedVars, self._getModelVarsWithoutVarsKey())
 
     def testFindVars_ShouldReturnSetVarsToo(self):
         self._model.setVar("omega", 27)
 
         self._expectedVars["omega"] = 27
 
-        self.assertEquals(self._expectedVars, self._getModelVarsWithoutVarsKey())
-
+        self.assertEqual(self._expectedVars, self._getModelVarsWithoutVarsKey())
 
     def testFindVars_ShouldReturnSetVarsInsteadOfHomonymGetterVars(self):
         self._model.setVar("alpha", 432)
 
         self._expectedVars["alpha"] = 432
 
-        self.assertEquals(self._expectedVars, self._getModelVarsWithoutVarsKey())
-
+        self.assertEqual(self._expectedVars, self._getModelVarsWithoutVarsKey())
 
     def testFindVars_ShouldCacheVarsWhenRequestedToTheConstructor(self):
         model = Model()
         model.setVar("ro", 50)
         model.setVar("sigma", 10)
 
-        self.assertEquals(3, len(model.findVars()))
+        self.assertEqual(3, len(model.findVars()))
 
         del model._vars["ro"]
         del model._vars["vars"]
 
-        self.assertEquals(["sigma"], list(model.findVars().keys()))
+        self.assertEqual(["sigma"], list(model.findVars().keys()))
 
 
 class ViewTests(unittest.TestCase):
     def setUp(self):
         self._view = View(91)
 
-
     def testTheModel_ShouldBeAvailable(self):
-        self.assertEquals(91, self._view._model)
+        self.assertEqual(91, self._view._model)
 
 
 class TemplateViewTests(ViewTests):
@@ -88,10 +81,8 @@ class TemplateViewTests(ViewTests):
         super(TemplateViewTests, self).setUp()
         self._view = TemplateView(91, "MyTemplatePath")
 
-
     def testModelAvailability(self):
-        self.assertEquals(91, self._view._model)
-
+        self.assertEqual(91, self._view._model)
 
     def testTemplatePathAvailability(self):
-        self.assertEquals("MyTemplatePath", self._view._templatePath)
+        self.assertEqual("MyTemplatePath", self._view._templatePath)

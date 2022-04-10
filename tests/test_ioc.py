@@ -5,7 +5,11 @@
 
 import unittest
 
-from info.gianlucacosta.iris.ioc import Container, TransientRegistration, SingletonRegistration
+from info.gianlucacosta.iris.ioc import (
+    Container,
+    TransientRegistration,
+    SingletonRegistration,
+)
 
 
 class MyIocClass:
@@ -24,9 +28,10 @@ class ContainerTests(unittest.TestCase):
         MyIocClass._instances = 0
         self._container = Container()
 
-
     def testInstanceScopeForRegisterTransient(self):
-        self._container.registerTransient(MyIocClass, lambda container, key: MyIocClass())
+        self._container.registerTransient(
+            MyIocClass, lambda container, key: MyIocClass()
+        )
 
         alpha = self._container.resolve(MyIocClass)
         beta = self._container.resolve(MyIocClass)
@@ -34,12 +39,13 @@ class ContainerTests(unittest.TestCase):
         alpha.val = 9
         beta.val = 10
 
-        self.assertEquals(2, MyIocClass._instances)
-        self.assertNotEquals(alpha.val, beta.val)
-
+        self.assertEqual(2, MyIocClass._instances)
+        self.assertNotEqual(alpha.val, beta.val)
 
     def testInstanceScopeForRegisterSingleton(self):
-        self._container.registerSingleton(MyIocClass, lambda container, key: MyIocClass())
+        self._container.registerSingleton(
+            MyIocClass, lambda container, key: MyIocClass()
+        )
 
         alpha = self._container.resolve(MyIocClass)
         beta = self._container.resolve(MyIocClass)
@@ -47,68 +53,73 @@ class ContainerTests(unittest.TestCase):
         alpha.val = 9
         beta.val = 10
 
-        self.assertEquals(1, MyIocClass._instances)
-        self.assertEquals(alpha.val, beta.val)
-
+        self.assertEqual(1, MyIocClass._instances)
+        self.assertEqual(alpha.val, beta.val)
 
     def testAddRegistrationWhenUsingADuplicateKey(self):
-        transientRegistration = TransientRegistration(lambda container, key: MyIocClass())
-        singletonRegistration = SingletonRegistration(lambda container, key: MyIocClass())
+        transientRegistration = TransientRegistration(
+            lambda container, key: MyIocClass()
+        )
+        singletonRegistration = SingletonRegistration(
+            lambda container, key: MyIocClass()
+        )
 
         self._container.addRegistration(MyIocClass, transientRegistration)
-        self.assertRaises(KeyError, self._container.addRegistration, MyIocClass, singletonRegistration)
-
+        self.assertRaises(
+            KeyError, self._container.addRegistration, MyIocClass, singletonRegistration
+        )
 
     def testFactoryMethodWithTransientRegistration(self):
-        self.assertRaises(ValueError, self._container.registerTransient, MyIocClass, None)
-
+        self.assertRaises(
+            ValueError, self._container.registerTransient, MyIocClass, None
+        )
 
     def testFactoryMethodWithSingletonRegistration(self):
-        self.assertRaises(ValueError, self._container.registerSingleton, MyIocClass, None)
-
+        self.assertRaises(
+            ValueError, self._container.registerSingleton, MyIocClass, None
+        )
 
     def testResolveWhenUsingAnUnknownKey(self):
         self.assertRaises(KeyError, self._container.resolve, "Unknown key")
-
 
     def testDisposeOnSingletonInstancesWhenADisposalFunctionIsPassed(self):
         self._container.registerSingleton(
             MyIocClass,
             lambda container, key: MyIocClass(),
-            lambda instance: instance.dispose())
+            lambda instance: instance.dispose(),
+        )
 
         self._container.resolve(MyIocClass)
 
         self._container.dispose()
 
-        self.assertEquals(0, MyIocClass._instances)
-
+        self.assertEqual(0, MyIocClass._instances)
 
     def testDisposeOnSingletonInstancesWhenNoDisposalFunctionIsPassed(self):
         self._container.registerSingleton(
-            MyIocClass,
-            lambda container, key: MyIocClass())
+            MyIocClass, lambda container, key: MyIocClass()
+        )
 
         self._container.resolve(MyIocClass)
 
         self._container.dispose()
 
-        self.assertEquals(1, MyIocClass._instances)
-
+        self.assertEqual(1, MyIocClass._instances)
 
     def testDisposeOnTransientInstances(self):
-        self._container.registerTransient(MyIocClass, lambda container, key: MyIocClass())
+        self._container.registerTransient(
+            MyIocClass, lambda container, key: MyIocClass()
+        )
 
         self._container.resolve(MyIocClass)
         self._container.resolve(MyIocClass)
 
         self._container.dispose()
-        self.assertEquals(2, MyIocClass._instances)
-
+        self.assertEqual(2, MyIocClass._instances)
 
     def testMethodChaining(self):
-        self._container \
-            .registerTransient(MyIocClass, lambda container, key: MyIocClass()) \
-            .resolve(MyIocClass)
+        self._container.registerTransient(
+            MyIocClass, lambda container, key: MyIocClass()
+        ).resolve(MyIocClass)
 
-        self.assertEquals(1, MyIocClass._instances)
+        self.assertEqual(1, MyIocClass._instances)

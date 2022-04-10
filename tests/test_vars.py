@@ -22,7 +22,7 @@ class VariablesTestCase(AbstractIoTestCase):
 class VariablesServiceTests(VariablesTestCase):
     def testGetFlag(self):
         flag = self._variablesService.getFlag("myTestFlag")
-        assert (flag is not None)
+        assert flag is not None
 
 
 class FlagTests(VariablesTestCase):
@@ -35,34 +35,25 @@ class FlagTests(VariablesTestCase):
 
         self._flag = Flag(self._flagPath)
 
-
     def testGetPathAfterRetrievingTheInexistentFlag(self):
-        self.assertEquals(
-            self._flagPath,
-            self._flag.getPath()
-        )
-
+        self.assertEqual(self._flagPath, self._flag.getPath())
 
     def testIsActive(self):
         self.assertFalse(self._flag.isActive())
 
-
     def testActivate(self):
         self._flag.activate()
         self.assertTrue(self._flag.isActive())
-
 
     def testActivateCalledMultipleTimes(self):
         self._flag.activate()
         self._flag.activate()
         self.assertTrue(self._flag.isActive())
 
-
     def testDeactivate(self):
         self._flag.activate()
         self._flag.deactivate()
         self.assertFalse(self._flag.isActive())
-
 
     def testDeactivateCalledMultipleTimes(self):
         self._flag.activate()
@@ -70,13 +61,11 @@ class FlagTests(VariablesTestCase):
         self._flag.deactivate()
         self.assertFalse(self._flag.isActive())
 
-
     def testFlipFromActiveToInactive(self):
         self._flag.activate()
         self._flag.flip()
 
         self.assertFalse(self._flag.isActive())
-
 
     def testFlipFromInactiveToActive(self):
         self._flag.deactivate()

@@ -1,0 +1,44 @@
+[tool.poetry]
+name = 'info.gianlucacosta.iris'
+version = '4.0.0'
+description = 'General-purpose library for Python'
+authors = ['Gianluca Costa <gianluca@gianlucacosta.info>']
+
+packages = [
+	{ include='info', from='src'}
+]
+
+[tool.poetry.dependencies]
+python = '^3.10'
+
+[tool.poetry.dev-dependencies]
+pytest = '^6.0'
+black = '^22.1.0'
+poethepoet = '^0.13.1'
+pytest-cov = '^3.0.0'
+
+[build-system]
+requires = ['poetry-core>=1.0.0']
+build-backend = 'poetry.core.masonry.api'
+
+
+[tool.poe.tasks]
+check = ['check-format', 'test']
+test='pytest --cov=info.gianlucacosta.iris --cov-report html --cov-report term tests'
+
+
+[tool.poe.tasks.format]
+shell='''
+poetry run black src
+poetry run black tests
+'''
+
+[tool.poe.tasks.check-format]
+shell='''
+poetry run black src --diff --color && poetry run black tests --diff --color
+'''
+
+[tool.poe.tasks.clean]
+shell = '''
+  rm -r dist/*
+'''
