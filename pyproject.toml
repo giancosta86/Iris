@@ -1,21 +1,48 @@
 [tool.poetry]
 name = 'info.gianlucacosta.iris'
+
 version = '4.0.0'
+
 description = 'General-purpose library for Python'
+
 authors = ['Gianluca Costa <gianluca@gianlucacosta.info>']
 
-packages = [
-	{ include='info', from='src'}
+license = 'LGPLv3'
+
+readme = 'README.md'
+
+repository = "https://github.com/giancosta86/Iris"
+
+documentation = "https://github.com/giancosta86/Iris"
+
+keywords = [
+  'library',
+  'IoC container',
+  'dependency injector',
+  'versioning',
+  'Maven',
+  'rendering',
+  'utilities',
 ]
 
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Topic :: Utilities",
+]
+
+packages = [{ include = 'info', from = 'src' }]
+
 [tool.poetry.dependencies]
-python = '^3.10'
+python = '^3.6.2'
 
 [tool.poetry.dev-dependencies]
 pytest = '^6.0'
 black = '^22.1.0'
 poethepoet = '^0.13.1'
-pytest-cov = '^3.0.0'
 
 [build-system]
 requires = ['poetry-core>=1.0.0']
@@ -30,17 +57,17 @@ rmspaces = 'info.gianlucacosta.iris.scripts.rmspaces:main'
 
 [tool.poe.tasks]
 check = ['check-format', 'test']
-test='pytest --cov=info.gianlucacosta.iris --cov-report html --cov-report term tests'
+test = 'pytest tests'
 
 
 [tool.poe.tasks.format]
-shell='''
+shell = '''
 poetry run black src
 poetry run black tests
 '''
 
 [tool.poe.tasks.check-format]
-shell='''
+shell = '''
 poetry run black src --diff --color && poetry run black tests --diff --color
 '''
 
