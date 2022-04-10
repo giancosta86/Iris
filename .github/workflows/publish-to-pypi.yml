@@ -1,0 +1,27 @@
+name: Publish to PyPI
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+
+      - run: pip install poetry==1.1.13
+
+      - run: poetry install
+
+      - run: poetry run poe check
+
+      - run: poetry build
+
+      - run: poetry publish -u giancosta86 -p '${{ secrets.PYPI_TOKEN }}'
