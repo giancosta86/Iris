@@ -1,0 +1,26 @@
+name: Publish
+
+on:
+  pull_request:
+    types: [closed]
+    branches: main
+
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: giancosta86/aurora-github/actions/publish-python-package@v11
+        with:
+          index-token: ${{ secrets.PYPI_TOKEN }}
+
+  tag-and-release:
+    runs-on: ubuntu-24.04
+    needs: publish
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: giancosta86/aurora-github/actions/tag-and-release@v11
