@@ -1,19 +1,19 @@
-[tool.poetry]
+[project]
 name = 'info.gianlucacosta.iris'
 
-version = '4.0.1'
+version = '0.0.0'
 
 description = 'General-purpose library for Python'
 
-authors = ['Gianluca Costa <gianluca@gianlucacosta.info>']
-
-license = 'LGPLv3'
-
 readme = 'README.md'
 
-repository = "https://github.com/giancosta86/Iris"
+authors = [{ name = "Gianluca Costa", email = "gianluca@gianlucacosta.info" }]
 
-documentation = "https://github.com/giancosta86/Iris"
+requires-python = ">=3.12"
+
+dependencies = ["pytest==6.0", "black==22.1.0"]
+
+license = 'LGPLv3'
 
 keywords = [
   'library',
@@ -34,44 +34,10 @@ classifiers = [
   "Topic :: Utilities",
 ]
 
-packages = [{ include = 'info', from = 'src' }]
-
-[tool.poetry.dependencies]
-python = '^3.6.2'
-
-[tool.poetry.dev-dependencies]
-pytest = '^6.0'
-black = '^22.1.0'
-poethepoet = '^0.13.1'
-
 [build-system]
-requires = ['poetry-core>=1.0.0']
-build-backend = 'poetry.core.masonry.api'
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-
-[tool.poetry.scripts]
-rmheader = 'info.gianlucacosta.iris.scripts.rmheader:main'
-rmlicense = 'info.gianlucacosta.iris.scripts.rmlicense:main'
-rmspaces = 'info.gianlucacosta.iris.scripts.rmspaces:main'
-
-
-[tool.poe.tasks]
-check = ['check-format', 'test']
-test = 'pytest tests'
-
-
-[tool.poe.tasks.format]
-shell = '''
-poetry run black src
-poetry run black tests
-'''
-
-[tool.poe.tasks.check-format]
-shell = '''
-poetry run black src --diff --color && poetry run black tests --diff --color
-'''
-
-[tool.poe.tasks.clean]
-shell = '''
-  rm -r dist/*
-'''
+[tool.pdm.scripts]
+check-format = 'black src --diff --color'
+verify = 'pytest tests'
