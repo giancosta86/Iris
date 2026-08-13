@@ -34,3 +34,4 @@ license = { text = "MIT" }
 [tool.pdm.scripts]
 check-format = 'black src --diff --color'
 test = 'pytest tests'
+verify = { composite = ['check-format', 'test'] }
