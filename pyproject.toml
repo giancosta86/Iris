@@ -1,4 +1,5 @@
 [project]
+
 name = 'info.gianlucacosta.iris'
 
 version = '0.0.0'
@@ -34,14 +35,27 @@ classifiers = [
   "Topic :: Utilities",
 ]
 
+
+[project.urls]
+
+Homepage = "https://github.com/giancosta86/Iris"
+
+Repository = "https://github.com/giancosta86/Iris"
+
+
 [build-system]
+
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
+
 [tool.pdm]
+
 distribution = true
 
+
 [tool.pdm.scripts]
+
 check-format = 'black src --diff --color'
 test = 'pytest tests'
 verify = { composite = ['check-format', 'test'] }
