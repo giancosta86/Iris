@@ -13,4 +13,4 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: giancosta86/aurora-github/actions/verify-python-package@v11.0.1
+      - uses: giancosta86/aurora-github/actions/verify-python-package@v11
