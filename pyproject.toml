@@ -5,13 +5,7 @@ version = '0.0.0'
 
 description = 'General-purpose library for Python'
 
-readme = 'README.md'
-
 authors = [{ name = "Gianluca Costa", email = "gianluca@gianlucacosta.info" }]
-
-requires-python = ">=3.12"
-
-dependencies = ["pytest==6.0", "black==22.1.0"]
 
 keywords = [
   'library',
@@ -26,16 +20,17 @@ keywords = [
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
-  "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+  "License :: OSI Approved :: MIT",
   "Operating System :: OS Independent",
   "Programming Language :: Python",
   "Topic :: Utilities",
 ]
 
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+dependencies = ["pytest==9.1.1", "black==26.5.1"]
+requires-python = "==3.12.*"
+readme = 'README.md'
+license = { text = "MIT" }
 
 [tool.pdm.scripts]
 check-format = 'black src --diff --color'
-verify = 'pytest tests'
+test = 'pytest tests'
