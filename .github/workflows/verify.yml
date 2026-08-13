@@ -16,3 +16,13 @@ jobs:
       - uses: giancosta86/aurora-github/actions/verify-python-package@v11
         with:
           pdm-version: 2.28.1
+
+      - uses: ./actions/publish-python-package
+        with:
+          pdm-version: 2.28.0
+
+          index-url: https://repo.repsy.io/giancosta86/pyground
+
+          index-user: __token__
+
+          index-secret: ${{ secrets.FAKE_PYTHON_TOKEN }}
