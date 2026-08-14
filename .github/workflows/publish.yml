@@ -16,7 +16,7 @@ jobs:
       - uses: giancosta86/aurora-github/actions/publish-python-package@v11
         with:
           index-user: __token__
-          index-token: ${{ secrets.PYPI_TOKEN }}
+          index-secret: ${{ secrets.PYPI_TOKEN }}
           pdm-version: 2.28.1
 
   tag-and-release:
