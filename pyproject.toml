@@ -38,9 +38,9 @@ classifiers = [
 
 [project.urls]
 
-Homepage = "https://github.com/giancosta86/Iris"
+homepage = "https://github.com/giancosta86/Iris"
 
-Repository = "https://github.com/giancosta86/Iris"
+repository = "https://github.com/giancosta86/Iris"
 
 
 [build-system]
