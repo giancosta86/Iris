@@ -8,9 +8,9 @@ description = 'General-purpose library for Python'
 
 authors = [{ name = "Gianluca Costa", email = "gianluca@gianlucacosta.info" }]
 
-dependencies = ["pytest==9.1.1", "black==26.5.1"]
+dependencies = []
 
-requires-python = "==3.12.*"
+requires-python = ">=3.12, <4.0"
 
 readme = 'README.md'
 
@@ -29,7 +29,7 @@ keywords = [
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
-  "License :: OSI Approved :: MIT",
+  "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Programming Language :: Python",
   "Topic :: Utilities",
@@ -53,9 +53,11 @@ build-backend = "pdm.backend"
 
 distribution = true
 
-
 [tool.pdm.scripts]
 
 check-format = 'black src --diff --color'
 test = 'pytest tests'
 verify = { composite = ['check-format', 'test'] }
+
+[dependency-groups]
+dev = ["pytest~=9.1", "black~=26.5"]
