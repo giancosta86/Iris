@@ -2,6 +2,8 @@
 
 _General-purpose library for Python_
 
+[![PyPI Version](https://img.shields.io/pypi/v/info.gianlucacosta.iris?style=for-the-badge&logo=python&logoColor=white&color=forestgreen)](https://pypi.org/project/info.gianlucacosta.iris/)
+
 ---
 
 ## Deprecation & namespace warning
