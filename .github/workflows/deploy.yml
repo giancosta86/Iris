@@ -1,0 +1,27 @@
+name: Deploy
+
+on:
+  pull_request:
+    types: closed
+    branches: main
+
+jobs:
+  publish-to-pypi:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: giancosta86/aurora-github/actions/publish-python-package@v12
+        with:
+          index-user: __token__
+          index-secret: ${{ secrets.PYPI_TOKEN }}
+          pdm-version: 2.28.1
+
+  tag-and-release:
+    runs-on: ubuntu-24.04
+    needs: publish-to-pypi
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: giancosta86/aurora-github/actions/tag-and-release@v12

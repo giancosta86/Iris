@@ -1,0 +1,16 @@
+name: Verify
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: main
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: giancosta86/aurora-github/actions/verify-python-package@v12
+        with:
+          pdm-version: 2.28.1

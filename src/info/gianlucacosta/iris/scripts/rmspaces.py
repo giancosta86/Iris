@@ -2,11 +2,7 @@
 
 """
 Utility script employing TrailingSpaceRemover
-
-:copyright: Copyright (C) 2013-2022 Gianluca Costa.
-:license: LGPLv3, see LICENSE for details.
 """
-
 
 import sys
 import re

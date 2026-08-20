@@ -1,12 +1,7 @@
-"""
-:copyright: Copyright (C) 2013-2022 Gianluca Costa.
-:license: LGPLv3, see LICENSE for details.
-"""
-
 import os
 
-from info.gianlucacosta.iris.vars import VariablesService, Flag
 from info.gianlucacosta.iris.io.utils import PathOperations
+from info.gianlucacosta.iris.vars import Flag, VariablesService
 
 from .io import AbstractIoTestCase
 

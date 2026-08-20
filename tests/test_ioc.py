@@ -1,14 +1,9 @@
-"""
-:copyright: Copyright (C) 2013-2022 Gianluca Costa.
-:license: LGPLv3, see LICENSE for details.
-"""
-
 import unittest
 
 from info.gianlucacosta.iris.ioc import (
     Container,
-    TransientRegistration,
     SingletonRegistration,
+    TransientRegistration,
 )
 
 

@@ -1,9 +1,7 @@
 """
 I/O utilities
-
-:copyright: Copyright (C) 2013-2022 Gianluca Costa.
-:license: LGPLv3, see LICENSE for details.
 """
+
 import os
 import shutil
 
@@ -83,7 +81,7 @@ class PathOperations:
         If no filter is passed, all the files are automatically added to the result.
         """
         for dirTuple in os.walk(rootPath):
-            (dirPath, dirNames, fileNames) = dirTuple
+            dirPath, dirNames, fileNames = dirTuple
 
             if currentDirFilter is not None and not currentDirFilter(
                 dirPath, dirNames, fileNames

@@ -1,9 +1,7 @@
 """
 File-based management of variables.
-
-:copyright: Copyright (C) 2013-2022 Gianluca Costa.
-:license: LGPLv3, see LICENSE for details.
 """
+
 import os
 
 from .io.utils import PathOperations

@@ -1,19 +1,20 @@
-[tool.poetry]
+[project]
+
 name = 'info.gianlucacosta.iris'
 
-version = '4.0.1'
+version = '0.0.0'
 
 description = 'General-purpose library for Python'
 
-authors = ['Gianluca Costa <gianluca@gianlucacosta.info>']
+authors = [{ name = "Gianluca Costa", email = "gianluca@gianlucacosta.info" }]
 
-license = 'LGPLv3'
+dependencies = []
+
+requires-python = ">=3.12, <4.0"
 
 readme = 'README.md'
 
-repository = "https://github.com/giancosta86/Iris"
-
-documentation = "https://github.com/giancosta86/Iris"
+license = { text = "MIT" }
 
 keywords = [
   'library',
@@ -28,50 +29,35 @@ keywords = [
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
-  "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+  "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Programming Language :: Python",
   "Topic :: Utilities",
 ]
 
-packages = [{ include = 'info', from = 'src' }]
 
-[tool.poetry.dependencies]
-python = '^3.6.2'
+[project.urls]
 
-[tool.poetry.dev-dependencies]
-pytest = '^6.0'
-black = '^22.1.0'
-poethepoet = '^0.13.1'
+homepage = "https://github.com/giancosta86/iris"
+
+repository = "https://github.com/giancosta86/iris"
+
 
 [build-system]
-requires = ['poetry-core>=1.0.0']
-build-backend = 'poetry.core.masonry.api'
+
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
 
 
-[tool.poetry.scripts]
-rmheader = 'info.gianlucacosta.iris.scripts.rmheader:main'
-rmlicense = 'info.gianlucacosta.iris.scripts.rmlicense:main'
-rmspaces = 'info.gianlucacosta.iris.scripts.rmspaces:main'
+[tool.pdm]
 
+distribution = true
 
-[tool.poe.tasks]
-check = ['check-format', 'test']
+[tool.pdm.scripts]
+
+check-format = 'black src --diff --color'
 test = 'pytest tests'
+verify = { composite = ['check-format', 'test'] }
 
-
-[tool.poe.tasks.format]
-shell = '''
-poetry run black src
-poetry run black tests
-'''
-
-[tool.poe.tasks.check-format]
-shell = '''
-poetry run black src --diff --color && poetry run black tests --diff --color
-'''
-
-[tool.poe.tasks.clean]
-shell = '''
-  rm -r dist/*
-'''
+[dependency-groups]
+dev = ["pytest~=9.1", "black~=26.5"]

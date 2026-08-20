@@ -2,9 +2,6 @@
 
 """
 Utility script employing HeaderRemover to remove license headers created by Maven projects extending "jar-plus"
-
-:copyright: Copyright (C) 2013-2022 Gianluca Costa.
-:license: LGPLv3, see LICENSE for details.
 """
 
 import sys
