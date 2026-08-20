@@ -53,11 +53,21 @@ build-backend = "pdm.backend"
 
 distribution = true
 
+
+[tool.pdm.build]
+
+includes = ["src"]
+
+source-includes = ["tests"]
+
+
 [tool.pdm.scripts]
 
 check-format = 'black src --diff --color'
 test = 'pytest tests'
 verify = { composite = ['check-format', 'test'] }
 
+
 [dependency-groups]
+
 dev = ["pytest~=9.1", "black~=26.5"]
